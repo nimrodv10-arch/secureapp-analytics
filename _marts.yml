@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: fct_users
+    description: "משתמש אחד בכל שורה: ערוץ, cohort, הכנסה ו-churn"
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: acq_channel
+        tests:
+          - accepted_values:
+              values: ['google_search', 'meta', 'tiktok', 'affiliate', 'organic', 'referral']
+      - name: region
+        tests:
+          - not_null:
+              config:
+                severity: warn
